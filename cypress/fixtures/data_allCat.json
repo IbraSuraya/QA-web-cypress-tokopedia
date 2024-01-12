@@ -1,0 +1,42 @@
+[
+  {
+    "id": "btnHeaderCategory#1",
+    "name": "Belanja"
+  },
+  {
+    "id": "btnHeaderCategory#2",
+    "name": "Featured"
+  },
+  {
+    "id": "btnHeaderCategory#3",
+    "name": "Kebutuhan Harian"
+  },
+  {
+    "id": "btnHeaderCategory#4",
+    "name": "Tagihan"
+  },
+  {
+    "id": "btnHeaderCategory#5",
+    "name": "Top-Up"
+  },
+  {
+    "id": "btnHeaderCategory#6",
+    "name": "Tokopedia Keuangan"
+  },
+  {
+    "id": "btnHeaderCategory#7",
+    "name": "Pajak & Pendidikan"
+  },
+  {
+    "id": "btnHeaderCategory#8",
+    "name": "Travel & Entertainment"
+  },
+  {
+    "id": "btnHeaderCategory#9",
+    "name": "Halal Corner"
+  },
+  {
+    "id": "btnHeaderCategory#10",
+    "name": "Lain - lain"
+  }
+]

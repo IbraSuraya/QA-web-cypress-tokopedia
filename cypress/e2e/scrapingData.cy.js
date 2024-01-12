@@ -16,66 +16,80 @@ describe('Scraping Data', () => {
     cy.wait(randomDelay())
   })
   
-  it.only('All Category', () => {
-    // Mendefinisikan data hasil scraping
+  it('All Category', () => {
     let tempAll = []
-    // Get button kategori
-    cy.get('[data-testid="headerText"]').should('be.visible').trigger('mouseover');
+    cy.get('[data-testid="headerText"]').should('be.visible').trigger('mouseover').wait(randomDelay())
     
-    // Mengambil elemen semua kategori
-    cy.get('[data-testid="allCategoryTab"]').within(() => {
-      // Ambil data atribute tiap tag div
-      cy.get('div').each((data) => {
-        // const tempText = cy.get(`[data-testid="${data.attr('data-testid')}"] div`).invoke('text')
-        let tempId = data.attr('data-testid')
-        // let tempText = cy.get(`[data-testid="${tempId}"] div`).invoke('text')
-        const temp = {
-          testId: tempId,
-          text: cy.get('div').invoke('text')
-        };
-        tempAll.push(temp)
-      }).wait(randomDelay());
-    });
+    cy.get('[data-testid="allCategoryTab"] > div').each(($categoryDiv, index) => {
+      const categoryName = $categoryDiv.find('div').text().trim();
+
+      tempAll.push({
+        id: `btnHeaderCategory#${index + 1}`,
+        name: categoryName,
+      });
+    }).wait(randomDelay())
     cy.log(tempAll)
-    // cy.log(JSON.stringify(tempAll, null, 2));
-    // cy.writeFile('cypress/fixtures/data_allCat.json', tempAll).wait(randomDelay())
+    cy.log(JSON.stringify(tempAll, null, 2));
+    cy.writeFile('cypress/fixtures/data_allCat.json', tempAll).wait(randomDelay())
   })
 
-  it('All Sub Category Belanja', () => {
-    // Get button kategori
-    cy.get('[data-testid="headerText"]').should('be.visible').trigger('mouseover');
+  it('All Sub Category from category Belanja', () => {
+    let tempAll = []
+    cy.get('[data-testid="headerText"]').should('be.visible').trigger('mouseover').click().wait(randomDelay())
+    cy.get('[data-testid="btnHeaderCategory#1"] div').click().wait(randomDelay())
+    cy.get('[data-testid="allCategories"] a').each(($categoryLink, index) => {
+      const categoryName = $categoryLink.text().trim();
+      const categoryHref = $categoryLink.attr('href');
+    
+      tempAll.push({
+        id: `showHide#${index + 1}`,
+        name: categoryName,
+        href: categoryHref,
+      })
+    }).wait(randomDelay())
+    cy.log(tempAll)
+    cy.log(JSON.stringify(tempAll, null, 2));
+    cy.writeFile('cypress/fixtures/data_allSubCat_Belanja.json', tempAll).wait(randomDelay())
+  })
 
+  it.only("All segment and sub segment from all sub category belanja", () => {
+    let tempAll = []
+    cy.get('[data-testid="headerText"]').should('be.visible').trigger('mouseover').click().wait(randomDelay())
+    cy.get('[data-testid="btnHeaderCategory#1"] div').click().wait(randomDelay())
+    cy.fixture('data_allSubCat_Belanja.json').then((subCats) => {
+      subCats.forEach(element => {
+        // cy.log(element)
+        cy.get(`[data-testid="${element.id}"]`).trigger('mouseover')
+        cy.get('.css-s0g7na').each(($category, index) => {
+          const categoryName = $category.find('.css-1okvkby')
+          // const testAJh = Object.children(categoryName)
+          // const categoryName = $category.find('.css-1okvkby').text().trim().split(" ");
+          cy.log(categoryName)
+          
+          const subTempAll = [];
+          // $category.find('.css-bfgk5q a').each(($subcategory) => {
 
-    // Mengambil elemen dengan data-testid "allCategories"
-    cy.get('[data-testid="allCategories"]').within(() => {
-      // Mengambil semua elemen <a> di dalamnya
-      cy.get('a').each((link) => {
-        // Mengambil data dari atribut yang diperlukan
-        const categoryData = {
-          href: link.attr('href'),
-          subCategory: link.attr('data-testid'),
-          text: link.text(),
-        };
+            // const subcategoryName = $subcategory.text().trim();
+            // const subcategoryHref = $subcategory.attr('href');
+            // const subcategoryId = $subcategory.attr('data-testid');
+        
+            // // Menambahkan data subkategori ke dalam array
+            // subTempAll.push({
+            //   id: subcategoryId,
+            //   href: subcategoryHref,
+            //   name: subcategoryName,
+            // });
+          // });
 
-        // Menambahkan data ke array hasil scraping
-        tempAll.push(categoryData);
-      });
-    });
-
-    // Menampilkan hasil scraping di console
-    cy.log(JSON.stringify(listSubCategory, null, 2));
-
-    // Opsional: Simpan hasil scraping ke file jika diperlukan
-    cy.writeFile('cypress/fixtures/data_subCategory.json', listSubCategory);
-  });
-
-  it('All sub Segment', () => {
-    cy.get('[data-testid="headerText"]').should('be.visible').trigger('mouseover');
-    cy.fixture('data_subCategory').then((subCategorys) => {
-      subCategorys.forEach(_element => {
-        console.log(_element.subCategory)
-        cy.get(`[data-testid="${_element.subCategory}"]`).wait(randomDelay())
-      });
-    })
+          // Menambahkan data kategori dan subkategori ke dalam objek
+          // tempAll.push({
+          //   category: categoryName,
+          //   subcategories: subcategories,
+          // });
+        })
+        // cy.log(JSON.stringify(tempAll, null, 2));
+        // cy.writeFile('cypress/fixtures/data_allSubSeg_Belanja.json', tempAll);
+      })
+    }).wait(randomDelay())
   })
 });
