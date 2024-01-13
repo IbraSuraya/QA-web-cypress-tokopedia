@@ -93,18 +93,7 @@ describe('Scraping Data', () => {
     }).wait(randomDelay())
   })
 
-  it.only("Testing", () => {
-    let tempAll = []
-
-    // get btn kategori in menu bar
-    cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').click().wait(randomDelay())
-
-    // get category belanja
-    cy.get('[data-testid="btnHeaderCategory#1"] div').click().wait(randomDelay())
-
-    // get sub category rumah tangga
-    cy.get('[data-testid="showHide#1"]').should('be.visible').trigger('mouseover').wait(randomDelay())
-
+  it("Testing", () => {
     // get side card tiap sub category
     cy.get('.css-s0g7na').each(($value, $list) => {
       const subTempAll = []
@@ -119,5 +108,49 @@ describe('Scraping Data', () => {
       }
       
     })
+  })
+  
+  it.only("Testing Ke-2", () => {
+    // get btn kategori in menu bar
+    cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').click().wait(randomDelay())
+    // get category belanja
+    cy.get('[data-testid="btnHeaderCategory#1"] div').click().wait(randomDelay())
+    // get sub category rumah tangga
+    cy.get('[data-testid="showHide#1"]').should('be.visible').trigger('mouseover').wait(randomDelay())
+
+    const catNavigates = [];
+    // Get all category elements
+    cy.get('.css-s0g7na .css-1owj1eu').each((category, index) => {
+      const navigateData = {};
+
+      // Get title and class of the navigate
+      navigateData.id = navigate.attr('data-testid');
+      navigateData.class = navigate.attr('class');
+
+      // Get segment data
+      navigateData.segment = {};
+      const segment = navigate.find('.css-1okvkby');
+      navigateData.segment.title = segment.text();
+      navigateData.segment.class = segment.attr('class');
+      navigateData.segment.href = segment.attr('href');
+
+      // Get sub-segment data
+      navigateData.segment.subSegment = [];
+      navigate.find('.css-bfgk5q a').each(($subIndex, subSegment) => {
+        
+        const subSegmentData = {};
+        subSegmentData.title = Cypress.$(subSegment).text();
+        subSegmentData.id = Cypress.$(subSegment).attr('data-testid');
+        subSegmentData.href = Cypress.$(subSegment).attr('href');
+        subSegmentData.class = Cypress.$(subSegment).attr('class');
+        navigateData.segment.subSegment.push(subSegmentData);
+      });
+
+      // Push navigate data to the catNavigates array
+      catNavigates.push(navigateData);
+    });
+
+    cy.log(catNavigates)
+    cy.writeFile('cypress/fixtures/test.json', catNavigates).wait(randomDelay())
   })
 });
