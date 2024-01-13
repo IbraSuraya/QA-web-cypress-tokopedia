@@ -1,0 +1,6 @@
+- sub-menu "Promo" redirect ke bukan /promo
+- Cat lain-lain -> sub-cat tokopedia affliate redirect ke /
+- Samsat Jawa Barat
+- Banyak segment wedding tidak ada sub-segment
+- Segment {buku lainnya, dapur, baju renang muslim, face body pain, pearawatn heawan ternak} tiada ada sub-sugment
+- sub-cat Produk Lainnya kosong segment

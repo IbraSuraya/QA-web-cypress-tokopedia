@@ -19,6 +19,8 @@ describe('Scraping Data', () => {
     cy.wait(randomDelay())
   })
   
+  // PERHATIKAN DELAY TIME
+
   it('All Category', () => {
     let categories = []
     // get btn kategori in menu bar
@@ -37,8 +39,9 @@ describe('Scraping Data', () => {
     cy.writeFile('cypress/fixtures/data_allCat.json', categories).wait(randomDelay());    // Save to file
   })
 
-  it.only('All Sub Category from category Belanja', () => {
+  it('All Sub Category', () => {
     let allData = []
+
     // get btn kategori in menu bar
     cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
     // akses semua categories
@@ -60,29 +63,30 @@ describe('Scraping Data', () => {
             // <a href="/p/buku" class="css-19zjbhc" data-testid="showHide#3">Buku</a>
             const subCat = {}
             subCat.id = $subCat.attr('data-testid'),
-            subCat.name = $subCat.text().trim(),
-            subCat.href =  $subCat.attr('href'),
+            subCat.name = $subCat.text().trim()
+            subCat.href =  $subCat.attr('href')
             subCat.cls =  $subCat.attr('class')
 
             _data.subCat.push(subCat)
           }).wait(randomDelay());
           
           allData.push(_data)
-          cy.log(allData)
-          cy.writeFile(`cypress/fixtures/data_subCat-${_cat.name}.json`, allData).wait(randomDelay())
+        } else{
+          // Get list sub categories
+          cy.get('.css-sbvsi7 a').each(($subCat, index) => {
+            // <a href="/tokopedia-cobrand" class="css-sc810n">Tokopedia Card</a>
+            const subCat = {}
+            subCat.href = $subCat.attr("href")
+            subCat.cls = $subCat.attr("class")
+            subCat.name = $subCat.text().trim()
+
+            _data.subCat.push(subCat)
+          }).wait(randomDelay());
+
+          allData.push(_data)
         }
-        // else{
-        //   let subCategories = []
-        //   // Get list sub categories
-        //   cy.get('.css-sbvsi7 a').each(($subCat, index) => {
-        //     // <a href="/tokopedia-cobrand" class="css-sc810n">Tokopedia Card</a>
-        //     subCategories.push({
-        //       href: $subCat.attr('href'),
-        //       cls: $subCat.attr('class'),
-        //       name: $subCat.text().trim()
-        //     })
-        //   })
-        // }
+        cy.log(allData)
+        cy.writeFile(`cypress/fixtures/data_subCat.json`, allData).wait(randomDelay())
       })
     })
   })
@@ -129,5 +133,18 @@ describe('Scraping Data', () => {
 
     cy.log(catNavigates)
     cy.writeFile('cypress/fixtures/test.json', catNavigates).wait(randomDelay())
+  })
+
+  it.only("All Trending Populer Keyword", () => {
+    const keyPop = []
+    cy.get("#trending-popular-keywords a").each(($_keyword, index) => {
+      keyPop.push({
+        id: $_keyword.attr("data-testid"),
+        href: $_keyword.attr("href").replace("https://www.tokopedia.com", ""),
+        name: $_keyword.text().trim()
+      })
+    })
+    cy.log(keyPop)
+    cy.writeFile('cypress/fixtures/data_keyPop.json', keyPop).wait(randomDelay());    // Save to file
   })
 });
