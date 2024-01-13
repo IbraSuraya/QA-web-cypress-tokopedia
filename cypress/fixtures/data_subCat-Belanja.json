@@ -1,0 +1,189 @@
+[
+  {
+    "id": "btnHeaderCategory#1",
+    "name": "Belanja",
+    "cls": "css-11icpy4",
+    "subCat": [
+      {
+        "id": "showHide#1",
+        "name": "Rumah Tangga",
+        "href": "/p/rumah-tangga",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#2",
+        "name": "Audio, Kamera & Elektronik Lainnya",
+        "href": "/p/audio-kamera-elektronik-lainnya",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#3",
+        "name": "Buku",
+        "href": "/p/buku",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#4",
+        "name": "Dapur",
+        "href": "/p/dapur",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#5",
+        "name": "Elektronik",
+        "href": "/p/elektronik",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#6",
+        "name": "Fashion Anak & Bayi",
+        "href": "/p/fashion-anak-bayi",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#7",
+        "name": "Fashion Muslim",
+        "href": "/p/fashion-muslim",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#8",
+        "name": "Fashion Pria",
+        "href": "/p/fashion-pria",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#9",
+        "name": "Fashion Wanita",
+        "href": "/p/fashion-wanita",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#10",
+        "name": "Film & Musik",
+        "href": "/p/film-musik",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#11",
+        "name": "Gaming",
+        "href": "/p/gaming",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#12",
+        "name": "Handphone & Tablet",
+        "href": "/p/handphone-tablet",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#13",
+        "name": "Ibu & Bayi",
+        "href": "/p/ibu-bayi",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#14",
+        "name": "Kecantikan",
+        "href": "/p/kecantikan",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#15",
+        "name": "Kesehatan",
+        "href": "/p/kesehatan",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#16",
+        "name": "Komputer & Laptop",
+        "href": "/p/komputer-laptop",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#17",
+        "name": "Logam Mulia",
+        "href": "/p/logam-mulia",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#18",
+        "name": "Mainan & Hobi",
+        "href": "/p/mainan-hobi",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#19",
+        "name": "Makanan & Minuman",
+        "href": "/p/makanan-minuman",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#20",
+        "name": "Office & Stationery",
+        "href": "/p/office-stationery",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#21",
+        "name": "Olahraga",
+        "href": "/p/olahraga",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#22",
+        "name": "Otomotif",
+        "href": "/p/otomotif",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#23",
+        "name": "Perawatan Hewan",
+        "href": "/p/perawatan-hewan",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#24",
+        "name": "Perawatan Tubuh",
+        "href": "/p/perawatan-tubuh",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#25",
+        "name": "Perlengkapan Pesta",
+        "href": "/p/perlengkapan-pesta",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#26",
+        "name": "Pertukangan",
+        "href": "/p/pertukangan",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#27",
+        "name": "Produk Lainnya",
+        "href": "/p/produk-lainnya",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#28",
+        "name": "Properti",
+        "href": "/p/properti",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#29",
+        "name": "Tiket, Travel, Voucher",
+        "href": "/p/tiket-travel-voucher",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#30",
+        "name": "Wedding",
+        "href": "/p/wedding",
+        "cls": "css-19zjbhc"
+      }
+    ]
+  }
+]

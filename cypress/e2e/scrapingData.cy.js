@@ -3,116 +3,93 @@ function randomDelay(){
 }
 
 describe('Scraping Data', () => {
+  // Note : use .only
   
   beforeEach(() => {
     cy.on('uncaught:exception', (err, runnable) => {
       return false
     });
+
     cy.visit('/', {
       headers: {
         "Accept-Encoding": "gzip, deflate, br",
       },
     });
+
     cy.wait(randomDelay())
   })
   
   it('All Category', () => {
-    let tempAll = []
-    cy.get('[data-testid="headerText"]').should('be.visible').trigger('mouseover').wait(randomDelay())
-    
-    cy.get('[data-testid="allCategoryTab"] > div').each(($categoryDiv, index) => {
-      const categoryName = $categoryDiv.find('div').text().trim();
-
-      tempAll.push({
-        id: `btnHeaderCategory#${index + 1}`,
-        name: categoryName,
+    let categories = []
+    // get btn kategori in menu bar
+    cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+    // get container all category
+    cy.get('[data-testid="allCategoryTab"] > div').each(($category, index) => {
+      // <div class="css-11icpy4" data-testid="btnHeaderCategory#2"><div>Featured</div></div>
+      categories.push({
+        id: $category.attr('data-testid'),
+        name: $category.find('div').text().trim(),
+        cls: $category.attr('class')
       });
-    }).wait(randomDelay())
-    cy.log(tempAll)
-    cy.log(JSON.stringify(tempAll, null, 2));
-    cy.writeFile('cypress/fixtures/data_allCat.json', tempAll).wait(randomDelay())
+      
+    }).wait(randomDelay());
+    // cy.log(categories).wait(randomDelay());
+    cy.writeFile('cypress/fixtures/data_allCat.json', categories).wait(randomDelay());    // Save to file
   })
 
-  it('All Sub Category from category Belanja', () => {
-    let tempAll = []
-    cy.get('[data-testid="headerText"]').should('be.visible').trigger('mouseover').click().wait(randomDelay())
-    cy.get('[data-testid="btnHeaderCategory#1"] div').click().wait(randomDelay())
-    cy.get('[data-testid="allCategories"] a').each(($categoryLink, index) => {
-      const categoryName = $categoryLink.text().trim();
-      const categoryHref = $categoryLink.attr('href');
-    
-      tempAll.push({
-        id: `showHide#${index + 1}`,
-        name: categoryName,
-        href: categoryHref,
+  it.only('All Sub Category from category Belanja', () => {
+    let allData = []
+    // get btn kategori in menu bar
+    cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+    // akses semua categories
+    cy.fixture('data_allCat').then((allCat) => {
+      allCat.forEach((_cat) => {
+        // get btn tiap category
+        cy.get(`[data-testid="${_cat.id}"] div`).click().wait(randomDelay())
+        
+        const _data = {}
+        _data.id = _cat.id,
+        _data.name = _cat.name,
+        _data.cls = _cat.cls,
+        _data.subCat = []
+        
+        // Try category belanja
+        if(_cat.name === "Belanja"){
+          // Get list sub categories
+          cy.get('[data-testid="allCategories"] a').each(($subCat, index) => {
+            // <a href="/p/buku" class="css-19zjbhc" data-testid="showHide#3">Buku</a>
+            const subCat = {}
+            subCat.id = $subCat.attr('data-testid'),
+            subCat.name = $subCat.text().trim(),
+            subCat.href =  $subCat.attr('href'),
+            subCat.cls =  $subCat.attr('class')
+
+            _data.subCat.push(subCat)
+          }).wait(randomDelay());
+          
+          allData.push(_data)
+          cy.log(allData)
+          cy.writeFile(`cypress/fixtures/data_subCat-${_cat.name}.json`, allData).wait(randomDelay())
+        }
+        // else{
+        //   let subCategories = []
+        //   // Get list sub categories
+        //   cy.get('.css-sbvsi7 a').each(($subCat, index) => {
+        //     // <a href="/tokopedia-cobrand" class="css-sc810n">Tokopedia Card</a>
+        //     subCategories.push({
+        //       href: $subCat.attr('href'),
+        //       cls: $subCat.attr('class'),
+        //       name: $subCat.text().trim()
+        //     })
+        //   })
+        // }
       })
-    }).wait(randomDelay())
-    cy.log(tempAll)
-    cy.log(JSON.stringify(tempAll, null, 2));
-    cy.writeFile('cypress/fixtures/data_allSubCat_Belanja.json', tempAll).wait(randomDelay())
+    })
   })
 
   it("All segment and sub segment from all sub category belanja", () => {
-    let tempAll = []
-    cy.get('[data-testid="headerText"]').should('be.visible').trigger('mouseover').click().wait(randomDelay())
-    cy.get('[data-testid="btnHeaderCategory#1"] div').click().wait(randomDelay())
-    cy.fixture('data_allSubCat_Belanja.json').then((subCats) => {
-      subCats.forEach(element => {
-        // cy.log(element)
-        cy.get(`[data-testid="${element.id}"]`).trigger('mouseover')
-        cy.get('.css-s0g7na').each(($category, index) => {
-          const categoryName = $category.find('.css-1okvkby')
-          // const testAJh = Object.children(categoryName)
-          // const categoryName = $category.find('.css-1okvkby').text().trim().split(" ");
-          cy.log(categoryName)
-          
-          const subTempAll = [];
-          // $category.find('.css-bfgk5q a').each(($subcategory) => {
-
-            // const subcategoryName = $subcategory.text().trim();
-            // const subcategoryHref = $subcategory.attr('href');
-            // const subcategoryId = $subcategory.attr('data-testid');
-        
-            // // Menambahkan data subkategori ke dalam array
-            // subTempAll.push({
-            //   id: subcategoryId,
-            //   href: subcategoryHref,
-            //   name: subcategoryName,
-            // });
-          // });
-
-          // Menambahkan data kategori dan subkategori ke dalam objek
-          // tempAll.push({
-          //   category: categoryName,
-          //   subcategories: subcategories,
-          // });
-        })
-        // cy.log(JSON.stringify(tempAll, null, 2));
-        // cy.writeFile('cypress/fixtures/data_allSubSeg_Belanja.json', tempAll);
-      })
-    }).wait(randomDelay())
-  })
-
-  it("Testing", () => {
-    // get side card tiap sub category
-    cy.get('.css-s0g7na').each(($value, $list) => {
-      const subTempAll = []
-      for(var subSegment of $value.find('.css-bfgk5q a')){
-        cy.log(subSegment)
-      }
-      for (var segment of $value.find('.css-1okvkby')){
-        tempAll.push({
-          _name: segment.text,
-          _href: segment.href
-        })
-      }
-      
-    })
-  })
-  
-  it.only("Testing Ke-2", () => {
     // get btn kategori in menu bar
-    cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').click().wait(randomDelay())
+    cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay())
     // get category belanja
     cy.get('[data-testid="btnHeaderCategory#1"] div').click().wait(randomDelay())
     // get sub category rumah tangga

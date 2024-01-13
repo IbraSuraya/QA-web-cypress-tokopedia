@@ -1,42 +1,52 @@
 [
   {
     "id": "btnHeaderCategory#1",
-    "name": "Belanja"
+    "name": "Belanja",
+    "cls": "css-11icpy4"
   },
   {
     "id": "btnHeaderCategory#2",
-    "name": "Featured"
+    "name": "Featured",
+    "cls": "css-11icpy4"
   },
   {
     "id": "btnHeaderCategory#3",
-    "name": "Kebutuhan Harian"
+    "name": "Kebutuhan Harian",
+    "cls": "css-11icpy4"
   },
   {
     "id": "btnHeaderCategory#4",
-    "name": "Tagihan"
+    "name": "Tagihan",
+    "cls": "css-11icpy4"
   },
   {
     "id": "btnHeaderCategory#5",
-    "name": "Top-Up"
+    "name": "Top-Up",
+    "cls": "css-11icpy4"
   },
   {
     "id": "btnHeaderCategory#6",
-    "name": "Tokopedia Keuangan"
+    "name": "Tokopedia Keuangan",
+    "cls": "css-11icpy4"
   },
   {
     "id": "btnHeaderCategory#7",
-    "name": "Pajak & Pendidikan"
+    "name": "Pajak & Pendidikan",
+    "cls": "css-11icpy4"
   },
   {
     "id": "btnHeaderCategory#8",
-    "name": "Travel & Entertainment"
+    "name": "Travel & Entertainment",
+    "cls": "css-11icpy4"
   },
   {
     "id": "btnHeaderCategory#9",
-    "name": "Halal Corner"
+    "name": "Halal Corner",
+    "cls": "css-11icpy4"
   },
   {
     "id": "btnHeaderCategory#10",
-    "name": "Lain - lain"
+    "name": "Lain - lain",
+    "cls": "css-11icpy4"
   }
 ]
