@@ -1,5 +1,5 @@
 function randomDelay(){
-  return Cypress._.random(100, 500)
+  return Cypress._.random(500, 1000)
 }
 
 describe('Scraping Data', () => {
@@ -21,121 +21,118 @@ describe('Scraping Data', () => {
   
   // PERHATIKAN DELAY TIME
 
-  it('All Category', () => {
+  // DONE
+  it('Get all the sub-categories of each category', () => {
     let categories = []
     // get btn kategori in menu bar
     cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
     // get container all category
     cy.get('[data-testid="allCategoryTab"] > div').each(($category, index) => {
       // <div class="css-11icpy4" data-testid="btnHeaderCategory#2"><div>Featured</div></div>
+      const _idCat = $category.attr('data-testid');
       categories.push({
-        id: $category.attr('data-testid'),
+        id: _idCat,
         name: $category.find('div').text().trim(),
-        cls: $category.attr('class')
+        cls: $category.attr('class'),
+        subCats: []
       });
-      
+
+      // get btn tiap category
+      cy.get(`[data-testid="${_idCat}"] div`).click().wait(randomDelay());
+
+      // for category belanja
+      if(_idCat == "btnHeaderCategory#1"){
+        // Get list sub categories
+        cy.get('[data-testid="allCategories"] a').each(($subCat) => {
+          // <a href="/p/buku" class="css-19zjbhc" data-testid="showHide#3">Buku</a>
+          const subCat = {}
+          subCat.id = $subCat.attr('data-testid'),
+          subCat.name = $subCat.text().trim()
+          subCat.href =  $subCat.attr('href')
+          subCat.cls =  $subCat.attr('class')
+
+          categories[index].subCats.push(subCat)
+        }).wait(randomDelay());
+      } else {
+        // Get list sub categories
+        cy.get('.css-sbvsi7 a').each(($subCat) => {
+          // <a href="/tokopedia-cobrand" class="css-sc810n">Tokopedia Card</a>
+          const subCat = {}
+          subCat.href = $subCat.attr("href")
+          subCat.cls = $subCat.attr("class")
+          subCat.name = $subCat.text().trim()
+
+          categories[index].subCats.push(subCat)
+        }).wait(randomDelay());
+      }
     }).wait(randomDelay());
+
     // cy.log(categories).wait(randomDelay());
     cy.writeFile('cypress/fixtures/data_allCat.json', categories).wait(randomDelay());    // Save to file
   })
 
-  it('All Sub Category', () => {
-    let allData = []
-
+  it.only("Get all segments and their sub segments from all sub categories of the 'belanja' category.", () => {
     // get btn kategori in menu bar
-    cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
-    // akses semua categories
+    cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay())
+
     cy.fixture('data_allCat').then((allCat) => {
-      allCat.forEach((_cat) => {
-        // get btn tiap category
-        cy.get(`[data-testid="${_cat.id}"] div`).click().wait(randomDelay())
-        
-        const _data = {}
-        _data.id = _cat.id,
-        _data.name = _cat.name,
-        _data.cls = _cat.cls,
-        _data.subCat = []
-        
-        // Try category belanja
-        if(_cat.name === "Belanja"){
-          // Get list sub categories
-          cy.get('[data-testid="allCategories"] a').each(($subCat, index) => {
-            // <a href="/p/buku" class="css-19zjbhc" data-testid="showHide#3">Buku</a>
-            const subCat = {}
-            subCat.id = $subCat.attr('data-testid'),
-            subCat.name = $subCat.text().trim()
-            subCat.href =  $subCat.attr('href')
-            subCat.cls =  $subCat.attr('class')
+      const allSegment = []
+      const catBelanja = allCat[0];
+      // get category belanja
+      cy.get(`[data-testid="${catBelanja.id}"] div`).click().wait(randomDelay())
 
-            _data.subCat.push(subCat)
-          }).wait(randomDelay());
-          
-          allData.push(_data)
-        } else{
-          // Get list sub categories
-          cy.get('.css-sbvsi7 a').each(($subCat, index) => {
-            // <a href="/tokopedia-cobrand" class="css-sc810n">Tokopedia Card</a>
-            const subCat = {}
-            subCat.href = $subCat.attr("href")
-            subCat.cls = $subCat.attr("class")
-            subCat.name = $subCat.text().trim()
-
-            _data.subCat.push(subCat)
-          }).wait(randomDelay());
-
-          allData.push(_data)
+      catBelanja.subCats.forEach((_subCat, indexCat) => {
+        const noSegment = ["showHide#17", "showHide#27"]
+        if(noSegment.includes(_subCat.id)) {
+          return
         }
-        cy.log(allData)
-        cy.writeFile(`cypress/fixtures/data_subCat.json`, allData).wait(randomDelay())
+        
+        // if(indexCat > 15) return
+
+        allSegment.push({
+          id: _subCat.id,
+          name: _subCat.name,
+          href: _subCat.href,
+          cls: _subCat.cls,
+          catNavs: []
+        })
+        
+        // get sub category rumah tangga
+        cy.get(`[data-testid="${_subCat.id}"]`).trigger('mouseover').wait(randomDelay());
+        cy.get('.css-s0g7na .css-1owj1eu', { timeout: 5000 }).should('exist').each((navigate, indexNav) => {
+          // <div class="css-1owj1eu" data-testid="catNavigation#1">pass</div>
+          allSegment[indexCat].catNavs.push({
+            id : navigate.attr('data-testid'),
+            class : navigate.attr('class'),
+            segment : {}
+          })
+
+          // // <a href="/p/rumah-tangga/dekorasi" class="css-1okvkby">Dekorasi</a>
+          // const segment = navigate.find('.css-1okvkby');
+          // allSegment[indexCat].catNavs[indexNav].segment.name = segment.text().trim()
+          // allSegment[indexCat].catNavs[indexNav].segment.class = segment.attr("class"),
+          // allSegment[indexCat].catNavs[indexNav].segment.href = segment.attr("href"),
+          // allSegment[indexCat].catNavs[indexNav].segment.subSegs = []
+
+          // // Get sub-segment data
+          // navigate.find('.css-bfgk5q a').each(($subIndex, subSegment) => {
+          //   // <a data-testid="categoryNavigation#2" href="/p/rumah-tangga/dekorasi/cover-kursi" class="css-ges1q2">Cover Kursi</a>
+          //   allSegment[indexCat].catNavs[indexNav].segment.subSegs.push({
+          //     id : Cypress.$(subSegment).attr("data-testid"),
+          //     href : Cypress.$(subSegment).attr("href"),
+          //     clss : Cypress.$(subSegment).attr("class"),
+          //     name: Cypress.$(subSegment).text().trim()
+          //   })
+          // })
+        })
       })
+      // cy.log(allSegment)
+      cy.writeFile('cypress/fixtures/data_allSub.json', allSegment).wait(randomDelay())
     })
   })
 
-  it("All segment and sub segment from all sub category belanja", () => {
-    // get btn kategori in menu bar
-    cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay())
-    // get category belanja
-    cy.get('[data-testid="btnHeaderCategory#1"] div').click().wait(randomDelay())
-    // get sub category rumah tangga
-    cy.get('[data-testid="showHide#1"]').should('be.visible').trigger('mouseover').wait(randomDelay())
-
-    const catNavigates = [];
-    // Get all category elements
-    cy.get('.css-s0g7na .css-1owj1eu').each((category, index) => {
-      const navigateData = {};
-
-      // Get title and class of the navigate
-      navigateData.id = navigate.attr('data-testid');
-      navigateData.class = navigate.attr('class');
-
-      // Get segment data
-      navigateData.segment = {};
-      const segment = navigate.find('.css-1okvkby');
-      navigateData.segment.title = segment.text();
-      navigateData.segment.class = segment.attr('class');
-      navigateData.segment.href = segment.attr('href');
-
-      // Get sub-segment data
-      navigateData.segment.subSegment = [];
-      navigate.find('.css-bfgk5q a').each(($subIndex, subSegment) => {
-        
-        const subSegmentData = {};
-        subSegmentData.title = Cypress.$(subSegment).text();
-        subSegmentData.id = Cypress.$(subSegment).attr('data-testid');
-        subSegmentData.href = Cypress.$(subSegment).attr('href');
-        subSegmentData.class = Cypress.$(subSegment).attr('class');
-        navigateData.segment.subSegment.push(subSegmentData);
-      });
-
-      // Push navigate data to the catNavigates array
-      catNavigates.push(navigateData);
-    });
-
-    cy.log(catNavigates)
-    cy.writeFile('cypress/fixtures/test.json', catNavigates).wait(randomDelay())
-  })
-
-  it.only("All Trending Populer Keyword", () => {
+  // Done
+  it("get all Trending Populer Keyword", () => {
     const keyPop = []
     cy.get("#trending-popular-keywords a").each(($_keyword, index) => {
       keyPop.push({

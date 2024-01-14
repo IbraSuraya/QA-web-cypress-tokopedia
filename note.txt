@@ -4,3 +4,7 @@
 - Banyak segment wedding tidak ada sub-segment
 - Segment {buku lainnya, dapur, baju renang muslim, face body pain, pearawatn heawan ternak} tiada ada sub-sugment
 - sub-cat Produk Lainnya kosong segment
+
+
+BINGUNG
+- Deteksi Sub category yang tidak memiliki segment dan sub segment apapun [Solusi temp : Manual]

@@ -2,51 +2,596 @@
   {
     "id": "btnHeaderCategory#1",
     "name": "Belanja",
-    "cls": "css-11icpy4"
+    "cls": "css-11icpy4",
+    "subCats": [
+      {
+        "id": "showHide#1",
+        "name": "Rumah Tangga",
+        "href": "/p/rumah-tangga",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#2",
+        "name": "Audio, Kamera & Elektronik Lainnya",
+        "href": "/p/audio-kamera-elektronik-lainnya",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#3",
+        "name": "Buku",
+        "href": "/p/buku",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#4",
+        "name": "Dapur",
+        "href": "/p/dapur",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#5",
+        "name": "Elektronik",
+        "href": "/p/elektronik",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#6",
+        "name": "Fashion Anak & Bayi",
+        "href": "/p/fashion-anak-bayi",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#7",
+        "name": "Fashion Muslim",
+        "href": "/p/fashion-muslim",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#8",
+        "name": "Fashion Pria",
+        "href": "/p/fashion-pria",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#9",
+        "name": "Fashion Wanita",
+        "href": "/p/fashion-wanita",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#10",
+        "name": "Film & Musik",
+        "href": "/p/film-musik",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#11",
+        "name": "Gaming",
+        "href": "/p/gaming",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#12",
+        "name": "Handphone & Tablet",
+        "href": "/p/handphone-tablet",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#13",
+        "name": "Ibu & Bayi",
+        "href": "/p/ibu-bayi",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#14",
+        "name": "Kecantikan",
+        "href": "/p/kecantikan",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#15",
+        "name": "Kesehatan",
+        "href": "/p/kesehatan",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#16",
+        "name": "Komputer & Laptop",
+        "href": "/p/komputer-laptop",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#17",
+        "name": "Logam Mulia",
+        "href": "/p/logam-mulia",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#18",
+        "name": "Mainan & Hobi",
+        "href": "/p/mainan-hobi",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#19",
+        "name": "Makanan & Minuman",
+        "href": "/p/makanan-minuman",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#20",
+        "name": "Office & Stationery",
+        "href": "/p/office-stationery",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#21",
+        "name": "Olahraga",
+        "href": "/p/olahraga",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#22",
+        "name": "Otomotif",
+        "href": "/p/otomotif",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#23",
+        "name": "Perawatan Hewan",
+        "href": "/p/perawatan-hewan",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#24",
+        "name": "Perawatan Tubuh",
+        "href": "/p/perawatan-tubuh",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#25",
+        "name": "Perlengkapan Pesta",
+        "href": "/p/perlengkapan-pesta",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#26",
+        "name": "Pertukangan",
+        "href": "/p/pertukangan",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#27",
+        "name": "Produk Lainnya",
+        "href": "/p/produk-lainnya",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#28",
+        "name": "Properti",
+        "href": "/p/properti",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#29",
+        "name": "Tiket, Travel, Voucher",
+        "href": "/p/tiket-travel-voucher",
+        "cls": "css-19zjbhc"
+      },
+      {
+        "id": "showHide#30",
+        "name": "Wedding",
+        "href": "/p/wedding",
+        "cls": "css-19zjbhc"
+      }
+    ]
   },
   {
     "id": "btnHeaderCategory#2",
     "name": "Featured",
-    "cls": "css-11icpy4"
+    "cls": "css-11icpy4",
+    "subCats": [
+      {
+        "href": "/discovery/deals?activeTab=5&source=kategori-lainnya.featured.promo.559",
+        "cls": "css-sc810n",
+        "name": "Promo"
+      },
+      {
+        "href": "/tokopedia-cobrand",
+        "cls": "css-sc810n",
+        "name": "Tokopedia Card"
+      },
+      {
+        "href": "/top-up/emoney/",
+        "cls": "css-sc810n",
+        "name": "Uang Elektronik"
+      },
+      {
+        "href": "/discovery/dilayani-tokopedia",
+        "cls": "css-sc810n",
+        "name": "Dilayani Tokopedia"
+      },
+      {
+        "href": "/discovery/tokopedia-sehat",
+        "cls": "css-sc810n",
+        "name": "Tokopedia Sehat"
+      }
+    ]
   },
   {
     "id": "btnHeaderCategory#3",
     "name": "Kebutuhan Harian",
-    "cls": "css-11icpy4"
+    "cls": "css-11icpy4",
+    "subCats": [
+      {
+        "href": "/discovery/tokopedia-parents",
+        "cls": "css-sc810n",
+        "name": "Ibu & Bayi"
+      },
+      {
+        "href": "/discovery/toserba?activeTab=2",
+        "cls": "css-sc810n",
+        "name": "Perawatan Hewan"
+      }
+    ]
   },
   {
     "id": "btnHeaderCategory#4",
     "name": "Tagihan",
-    "cls": "css-11icpy4"
+    "cls": "css-11icpy4",
+    "subCats": [
+      {
+        "href": "/tagihan/pdam/",
+        "cls": "css-sc810n",
+        "name": "Air PDAM"
+      },
+      {
+        "href": "/angsuran/",
+        "cls": "css-sc810n",
+        "name": "Angsuran Kredit"
+      },
+      {
+        "href": "/tagihan/bpjs-kesehatan/",
+        "cls": "css-sc810n",
+        "name": "BPJS"
+      },
+      {
+        "href": "/tagihan/bridestorypay/",
+        "cls": "css-sc810n",
+        "name": "Bridestory Pay"
+      },
+      {
+        "href": "/tagihan/invoicing",
+        "cls": "css-sc810n",
+        "name": "E-Invoicing"
+      },
+      {
+        "href": "/tagihan/pgn",
+        "cls": "css-sc810n",
+        "name": "Tagihan Gas"
+      },
+      {
+        "href": "/tv-kabel/",
+        "cls": "css-sc810n",
+        "name": "Internet & TV Kabel"
+      },
+      {
+        "href": "/mybills/",
+        "cls": "css-sc810n",
+        "name": "Langganan"
+      },
+      {
+        "href": "/pln/token-listrik/",
+        "cls": "css-sc810n",
+        "name": "Listrik PLN"
+      },
+      {
+        "href": "/tagihan/pascabayar/",
+        "cls": "css-sc810n",
+        "name": "Pascabayar"
+      },
+      {
+        "href": "/tagihan/asuransi/prudential/",
+        "cls": "css-sc810n",
+        "name": "Premi Asuransi"
+      },
+      {
+        "href": "/tagihan/ipl/",
+        "cls": "css-sc810n",
+        "name": "Tagihan IPL"
+      },
+      {
+        "href": "/tagihan/kartu-kredit/all/",
+        "cls": "css-sc810n",
+        "name": "Tagihan Kartu Kredit"
+      },
+      {
+        "href": "/tagihan/telepon/",
+        "cls": "css-sc810n",
+        "name": "Telkom"
+      }
+    ]
   },
   {
     "id": "btnHeaderCategory#5",
     "name": "Top-Up",
-    "cls": "css-11icpy4"
+    "cls": "css-11icpy4",
+    "subCats": [
+      {
+        "href": "/pln/",
+        "cls": "css-sc810n",
+        "name": "Token Listrik"
+      },
+      {
+        "href": "/paket-data/",
+        "cls": "css-sc810n",
+        "name": "Paket Data"
+      },
+      {
+        "href": "/pulsa/",
+        "cls": "css-sc810n",
+        "name": "Pulsa"
+      },
+      {
+        "href": "/roaming/?ispulsa=1",
+        "cls": "css-sc810n",
+        "name": "Roaming"
+      },
+      {
+        "href": "/top-up/emoney/",
+        "cls": "css-sc810n",
+        "name": "Uang Elektronik"
+      }
+    ]
   },
   {
     "id": "btnHeaderCategory#6",
     "name": "Tokopedia Keuangan",
-    "cls": "css-11icpy4"
+    "cls": "css-11icpy4",
+    "subCats": [
+      {
+        "href": "/asuransi?source=Jelajah2",
+        "cls": "css-sc810n",
+        "name": "Proteksi"
+      },
+      {
+        "href": "/asuransi?source=Jelajah1",
+        "cls": "css-sc810n",
+        "name": "Klaim Proteksi"
+      },
+      {
+        "href": "/emas/",
+        "cls": "css-sc810n",
+        "name": "Emas"
+      },
+      {
+        "href": "/reksa-dana",
+        "cls": "css-sc810n",
+        "name": "Reksa Dana"
+      },
+      {
+        "href": "/pinjaman-online/landing-dana-instant",
+        "cls": "css-sc810n",
+        "name": "Dana Instan"
+      },
+      {
+        "href": "/fm/modal-toko/",
+        "cls": "css-sc810n",
+        "name": "Modal Toko"
+      },
+      {
+        "href": "/gift-card/",
+        "cls": "css-sc810n",
+        "name": "Tokopedia Giftcard"
+      }
+    ]
   },
   {
     "id": "btnHeaderCategory#7",
     "name": "Pajak & Pendidikan",
-    "cls": "css-11icpy4"
+    "cls": "css-11icpy4",
+    "subCats": [
+      {
+        "href": "/pajak/pdl",
+        "cls": "css-sc810n",
+        "name": "Pajak Daerah Lainnya"
+      },
+      {
+        "href": "/pajak/samsat/jawa-barat/",
+        "cls": "css-sc810n",
+        "name": "E-Samsat"
+      },
+      {
+        "href": "/pajak/pbb/",
+        "cls": "css-sc810n",
+        "name": "Pajak PBB"
+      },
+      {
+        "href": "/mpn",
+        "cls": "css-sc810n",
+        "name": "Penerimaan Negara"
+      },
+      {
+        "href": "/retribusi/",
+        "cls": "css-sc810n",
+        "name": "Retribusi"
+      },
+      {
+        "href": "/discovery/kartu-prakerja",
+        "cls": "css-sc810n",
+        "name": "Prakerja"
+      },
+      {
+        "href": "/pendidikan/",
+        "cls": "css-sc810n",
+        "name": "Biaya Pendidikan"
+      },
+      {
+        "href": "/belajar/",
+        "cls": "css-sc810n",
+        "name": "Belajar"
+      }
+    ]
   },
   {
     "id": "btnHeaderCategory#8",
     "name": "Travel & Entertainment",
-    "cls": "css-11icpy4"
+    "cls": "css-11icpy4",
+    "subCats": [
+      {
+        "href": "/deals/jakarta/?ispulsa=1",
+        "cls": "css-sc810n",
+        "name": "Food & Voucher"
+      },
+      {
+        "href": "/events/hiburan?ispulsa=1",
+        "cls": "css-sc810n",
+        "name": "Hiburan"
+      },
+      {
+        "href": "/hotel/",
+        "cls": "css-sc810n",
+        "name": "Hotel"
+      },
+      {
+        "href": "/top-up/mtix/?ispulsa=1",
+        "cls": "css-sc810n",
+        "name": "M.Tix XXI"
+      },
+      {
+        "href": "/streaming/",
+        "cls": "css-sc810n",
+        "name": "Streaming"
+      },
+      {
+        "href": "/events/?ispulsa=1",
+        "cls": "css-sc810n",
+        "name": "Tiket Event"
+      },
+      {
+        "href": "/kereta-api/?ispulsa=1",
+        "cls": "css-sc810n",
+        "name": "Tiket Kereta Api"
+      },
+      {
+        "href": "/flight/",
+        "cls": "css-sc810n",
+        "name": "Tiket Pesawat"
+      },
+      {
+        "href": "/voucher-game/garena/arena-of-valor/",
+        "cls": "css-sc810n",
+        "name": "Voucher Game"
+      }
+    ]
   },
   {
     "id": "btnHeaderCategory#9",
     "name": "Halal Corner",
-    "cls": "css-11icpy4"
+    "cls": "css-11icpy4",
+    "subCats": [
+      {
+        "href": "/s/wakaf",
+        "cls": "css-sc810n",
+        "name": "Wakaf"
+      },
+      {
+        "href": "/donasi-online/",
+        "cls": "css-sc810n",
+        "name": "Donasi"
+      },
+      {
+        "href": "/discovery/Tokopedia-Fidyah",
+        "cls": "css-sc810n",
+        "name": "Fidyah"
+      },
+      {
+        "href": "/s/zakat",
+        "cls": "css-sc810n",
+        "name": "Zakat Maal"
+      },
+      {
+        "href": "/reksa-dana/syariah",
+        "cls": "css-sc810n",
+        "name": "Reksadana Syariah"
+      },
+      {
+        "href": "/s/zakat",
+        "cls": "css-sc810n",
+        "name": "Zakat"
+      },
+      {
+        "href": "/s/kecantikan-halal",
+        "cls": "css-sc810n",
+        "name": "Kecantikan Halal"
+      },
+      {
+        "href": "/s/kesehatan-halal",
+        "cls": "css-sc810n",
+        "name": "Kesehatan Halal"
+      },
+      {
+        "href": "/s/makanan-minuman-halal",
+        "cls": "css-sc810n",
+        "name": "Makanan & Minuman Halal"
+      },
+      {
+        "href": "/p/fashion-muslim",
+        "cls": "css-sc810n",
+        "name": "Fashion Muslim"
+      },
+      {
+        "href": "/p/fashion-muslim/perlengkapan-ibadah",
+        "cls": "css-sc810n",
+        "name": "Perlengkapan Ibadah"
+      },
+      {
+        "href": "/s/quran",
+        "cls": "css-sc810n",
+        "name": "Al Qur'an"
+      },
+      {
+        "href": "/s/jadwal-sholat",
+        "cls": "css-sc810n",
+        "name": "Jadwal Sholat"
+      },
+      {
+        "href": "/s/qurban",
+        "cls": "css-sc810n",
+        "name": "Qurban"
+      }
+    ]
   },
   {
     "id": "btnHeaderCategory#10",
     "name": "Lain - lain",
-    "cls": "css-11icpy4"
+    "cls": "css-11icpy4",
+    "subCats": [
+      {
+        "href": "/discovery/city-directory",
+        "cls": "css-sc810n",
+        "name": "Belanja di Kotamu"
+      },
+      {
+        "href": "/discovery/clean",
+        "cls": "css-sc810n",
+        "name": "Tokopedia Clean"
+      },
+      {
+        "href": "/pasang-tv-kabel/",
+        "cls": "css-sc810n",
+        "name": "Pasang Internet & TV Kabel"
+      },
+      {
+        "href": "/discovery/tukar-tambah",
+        "cls": "css-sc810n",
+        "name": "Tukar Tambah"
+      },
+      {
+        "href": "/",
+        "cls": "css-sc810n",
+        "name": "Tokopedia Affiliate"
+      }
+    ]
   }
 ]
