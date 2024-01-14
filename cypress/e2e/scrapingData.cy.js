@@ -71,6 +71,7 @@ describe('Scraping Data', () => {
     cy.writeFile('cypress/fixtures/data_allCat.json', categories).wait(randomDelay());    // Save to file
   })
 
+  // DONE
   it.only("Get all segments and their sub segments from all sub categories of the 'belanja' category.", () => {
     // get btn kategori in menu bar
     cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay())
@@ -82,13 +83,6 @@ describe('Scraping Data', () => {
       cy.get(`[data-testid="${catBelanja.id}"] div`).click().wait(randomDelay())
 
       catBelanja.subCats.forEach((_subCat, indexCat) => {
-        const noSegment = ["showHide#17", "showHide#27"]
-        if(noSegment.includes(_subCat.id)) {
-          return
-        }
-        
-        // if(indexCat > 15) return
-
         allSegment.push({
           id: _subCat.id,
           name: _subCat.name,
@@ -96,37 +90,42 @@ describe('Scraping Data', () => {
           cls: _subCat.cls,
           catNavs: []
         })
+      })
+      cy.log(allSegment)
+    
+      allSegment.forEach((subCat) => {
+      const noID = ["showHide#17", "showHide#27"]
+        if(noID.includes(subCat.id)) return
         
         // get sub category rumah tangga
-        cy.get(`[data-testid="${_subCat.id}"]`).trigger('mouseover').wait(randomDelay());
-        cy.get('.css-s0g7na .css-1owj1eu', { timeout: 5000 }).should('exist').each((navigate, indexNav) => {
+        cy.get(`[data-testid="${subCat.id}"]`).trigger('mouseover').wait(randomDelay());
+        cy.get('.css-s0g7na .css-1owj1eu', { timeout: 5000 }).should('exist').each((navigate, idxNav) => {
           // <div class="css-1owj1eu" data-testid="catNavigation#1">pass</div>
-          allSegment[indexCat].catNavs.push({
+          subCat.catNavs.push({
             id : navigate.attr('data-testid'),
             class : navigate.attr('class'),
             segment : {}
           })
-
-          // // <a href="/p/rumah-tangga/dekorasi" class="css-1okvkby">Dekorasi</a>
-          // const segment = navigate.find('.css-1okvkby');
-          // allSegment[indexCat].catNavs[indexNav].segment.name = segment.text().trim()
-          // allSegment[indexCat].catNavs[indexNav].segment.class = segment.attr("class"),
-          // allSegment[indexCat].catNavs[indexNav].segment.href = segment.attr("href"),
-          // allSegment[indexCat].catNavs[indexNav].segment.subSegs = []
-
-          // // Get sub-segment data
-          // navigate.find('.css-bfgk5q a').each(($subIndex, subSegment) => {
-          //   // <a data-testid="categoryNavigation#2" href="/p/rumah-tangga/dekorasi/cover-kursi" class="css-ges1q2">Cover Kursi</a>
-          //   allSegment[indexCat].catNavs[indexNav].segment.subSegs.push({
-          //     id : Cypress.$(subSegment).attr("data-testid"),
-          //     href : Cypress.$(subSegment).attr("href"),
-          //     clss : Cypress.$(subSegment).attr("class"),
-          //     name: Cypress.$(subSegment).text().trim()
-          //   })
-          // })
+          
+          // <a href="/p/rumah-tangga/dekorasi" class="css-1okvkby">Dekorasi</a>
+          const segment = navigate.find('.css-1okvkby');
+          subCat.catNavs[idxNav].segment.name = segment.text().trim()
+          subCat.catNavs[idxNav].segment.class = segment.attr("class"),
+          subCat.catNavs[idxNav].segment.href = segment.attr("href"),
+          subCat.catNavs[idxNav].segment.subSegs = []
+          
+          // Get sub-segment data
+          navigate.find('.css-bfgk5q a').each(($subIndex, subSegment) => {
+            // <a data-testid="categoryNavigation#2" href="/p/rumah-tangga/dekorasi/cover-kursi" class="css-ges1q2">Cover Kursi</a>
+            subCat.catNavs[idxNav].segment.subSegs.push({
+              id : Cypress.$(subSegment).attr("data-testid"),
+              href : Cypress.$(subSegment).attr("href"),
+              clss : Cypress.$(subSegment).attr("class"),
+              name: Cypress.$(subSegment).text().trim()
+            })
+          })
         })
       })
-      // cy.log(allSegment)
       cy.writeFile('cypress/fixtures/data_allSub.json', allSegment).wait(randomDelay())
     })
   })
