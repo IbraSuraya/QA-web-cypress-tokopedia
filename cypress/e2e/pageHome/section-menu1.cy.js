@@ -76,7 +76,16 @@ describe("Page - Home", () => {
   })
     
   context("Section - Main Menu", () => {
-    function navToSubCategory(category, subCat, linkSubCat) {
+    it("TP-PH-01 Kembali ke home page", () => {
+      cy.get('[data-testid="icnHeaderIcon"] > img').click().wait(randomDelay())
+      cy.url().should("include", "/").wait(randomDelay())
+    })
+  })
+
+  // IT IS RECOMMENDED TO DO DATA FETCHING AGAIN SO THAT IT IS UPDATED.
+  context("Section - Sub Main Menu | Category Belanja", () => {
+    // SECTION SUB CATEGORY - CATEGORY BELANJA
+    function navToSubCat_Belanja(category, subCat, linkSubCat) {
       // Get every sub-cat
       cy.get(`[data-testid="${subCat}"]`).trigger('mouseover').wait(randomDelay()).click();
       cy.url().should("include", linkSubCat).wait(randomDelay())
@@ -85,12 +94,6 @@ describe("Page - Home", () => {
       cy.get(`[data-testid="${category}"] div`).click().wait(randomDelay());
     }
 
-    it("TP-PH-01 Kembali ke home page", () => {
-      cy.get('[data-testid="icnHeaderIcon"] > img').click().wait(randomDelay())
-      cy.url().should("include", "/").wait(randomDelay())
-    })
-    
-    // IT IS RECOMMENDED TO DO DATA FETCHING AGAIN SO THAT IT IS UPDATED.
     it("TP-PH-11.A (1-5) Redirect page every sub category from category Belanja", () => {
       // btn "Kategori"
       cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
@@ -103,7 +106,7 @@ describe("Page - Home", () => {
         _belanja.subCats.forEach((_subCat, idxSubCat) => {
           if (idxSubCat >= 5) return    // Sub-Cat 1-5
           cy.log("INDEX ", idxSubCat)
-          navToSubCategory(_belanja.id, _subCat.id, _subCat.href)
+          navToSubCat_Belanja(_belanja.id, _subCat.id, _subCat.href)
         })
       })
     })
@@ -120,7 +123,7 @@ describe("Page - Home", () => {
         _belanja.subCats.forEach((_subCat, idxSubCat) => {
           if (idxSubCat < 5 || idxSubCat >= 10) return    // Sub-Cat 6-10
           cy.log("INDEX ", idxSubCat)
-          navToSubCategory(_belanja.id, _subCat.id, _subCat.href)
+          navToSubCat_Belanja(_belanja.id, _subCat.id, _subCat.href)
         })
       })
     })
@@ -137,7 +140,7 @@ describe("Page - Home", () => {
         _belanja.subCats.forEach((_subCat, idxSubCat) => {
           if (idxSubCat < 10 || idxSubCat >= 15) return    // Sub-Cat 11-15
           cy.log("INDEX ", idxSubCat)
-          navToSubCategory(_belanja.id, _subCat.id, _subCat.href)
+          navToSubCat_Belanja(_belanja.id, _subCat.id, _subCat.href)
         })
       })
     })
@@ -154,7 +157,7 @@ describe("Page - Home", () => {
         _belanja.subCats.forEach((_subCat, idxSubCat) => {
           if (idxSubCat < 15 || idxSubCat >= 20) return    // Sub-Cat 16-20
           cy.log("INDEX ", idxSubCat)
-          navToSubCategory(_belanja.id, _subCat.id, _subCat.href)
+          navToSubCat_Belanja(_belanja.id, _subCat.id, _subCat.href)
         })
       })
     })
@@ -171,7 +174,7 @@ describe("Page - Home", () => {
         _belanja.subCats.forEach((_subCat, idxSubCat) => {
           if (idxSubCat < 20 || idxSubCat >= 25) return    // Sub-Cat 21-25
           cy.log("INDEX ", idxSubCat)
-          navToSubCategory(_belanja.id, _subCat.id, _subCat.href)
+          navToSubCat_Belanja(_belanja.id, _subCat.id, _subCat.href)
         })
       })
     })
@@ -188,9 +191,83 @@ describe("Page - Home", () => {
         _belanja.subCats.forEach((_subCat, idxSubCat) => {
           if (idxSubCat < 25) return    // Sub-Cat 26-30
           cy.log("INDEX ", idxSubCat)
-          navToSubCategory(_belanja.id, _subCat.id, _subCat.href)
+          navToSubCat_Belanja(_belanja.id, _subCat.id, _subCat.href)
         })
       })
     })
+    
+    // SECTION SEGMENT - SUB-CATEGORY RUMAH TANGGA - CATRGORY BELANJA
+    function navToSegment(subCat, catNav, segCls, segHref){
+      cy.get(`[data-testid="${catNav}"] > :nth-child(1) > .${segCls}`).wait(randomDelay()).click()
+      cy.url().should("include", segHref).wait(randomDelay())
+      cy.go(-1)
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      cy.get(`[data-testid="btnHeaderCategory#1"] div`).click().wait(randomDelay());
+      cy.get(`[data-testid="${subCat}"]`).trigger('mouseover').wait(randomDelay());
+    }
+
+    it("TP-PH-12.A (1-6) Redirect page every segment from sub category rumah tangga", () => {
+      // btn "Kategori"
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      // get category "Belanja"
+      cy.get(`[data-testid="btnHeaderCategory#1"] div`).click().wait(randomDelay());
+      
+      cy.fixture("data_allSub").then((subCats) => {
+        const _rmhTangga = subCats[0]
+        cy.get(`[data-testid="${_rmhTangga.id}"]`).trigger('mouseover').wait(randomDelay());
+        
+        _rmhTangga.catNavs.forEach((catNav, idxNavSeg) => {
+          if(idxNavSeg >= (_rmhTangga.catNavs.length / 2)) return   // 1-6
+          // cy.log("INDEX : ", idxNavSeg)
+          navToSegment(_rmhTangga.id, catNav.id, catNav.segment.class, catNav.segment.href)
+        })
+      })
+    })
+
+    it("TP-PH-12.B (7-12) Redirect page every segment from sub category rumah tangga", () => {
+      // btn "Kategori"
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      // get category "Belanja"
+      cy.get(`[data-testid="btnHeaderCategory#1"] div`).click().wait(randomDelay());
+      
+      cy.fixture("data_allSub").then((subCats) => {
+        const _rmhTangga = subCats[0]
+        cy.get(`[data-testid="${_rmhTangga.id}"]`).trigger('mouseover').wait(randomDelay());
+        
+        _rmhTangga.catNavs.forEach((catNav, idxNavSeg) => {
+          if(idxNavSeg < (_rmhTangga.catNavs.length / 2)) return   // 7-12
+          // cy.log("INDEX : ", idxNavSeg)
+          navToSegment(_rmhTangga.id, catNav.id, catNav.segment.class, catNav.segment.href)
+        })
+      })
+    })
+
+    // SECTION SUB CATEGORY - CATEGORY FEATURED
+    function navToSubCat_All(category, subCat, linkSubCat) {
+      // Get every sub-cat
+      cy.get(`[href="${linkSubCat}"]`).trigger('mouseover').wait(randomDelay()).click();
+      cy.url().should("include", linkSubCat).wait(randomDelay())
+      cy.go(-1)
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      cy.get(`[data-testid="${category}"] div`).click().wait(randomDelay());
+    }
+    
+    // KECUALI SUB CATEGORY PROMO
+    it.only("TP-PH-14 Redirect page every sub category from category Featured", () => {
+      // btn "Kategori"
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      cy.fixture('data_allCat').then((allCat) => {
+        // Category "Featured"
+        const _featured = allCat[1]
+        cy.get(`[data-testid="${_featured.id}"] div`).click().wait(randomDelay());
+        
+        // Access All sub-cat
+        _featured.subCats.forEach((_subCat, idxSubCat) => {
+          if (idxSubCat === 1) return
+          navToSubCat_All(_featured.id, _subCat.name, _subCat.href)
+        })
+      })
+    })
+    
   })
 })

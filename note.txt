@@ -1,4 +1,6 @@
-- sub-menu "Promo" redirect ke bukan /promo
+- Beda href html dengan url actual
+  - sub-menu "Promo" redirect ke bukan /promo melainkan /discovery/deals
+  = sub-cat "Tokopedia Card" redirect ke bukan /tokopedia-cobrand melainkan /tokopedia-card
 - Cat lain-lain -> sub-cat tokopedia affliate : redirect ke page /
 - Cat Pajak & Pendidikan -> sub-cat E-Samsat : Default Samsat Jawa Barat, walaupun location diubah2
 - Banyak segment di kategori belanja banyak yang tidak memiliki sub-segment
