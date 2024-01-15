@@ -1,10 +1,10 @@
 - sub-menu "Promo" redirect ke bukan /promo
-- Cat lain-lain -> sub-cat tokopedia affliate redirect ke /
-- Samsat Jawa Barat
-- Banyak segment wedding tidak ada sub-segment
-- Segment {buku lainnya, dapur, baju renang muslim, face body pain, pearawatn heawan ternak} tiada ada sub-sugment
-- sub-cat Produk Lainnya kosong segment
-
+- Cat lain-lain -> sub-cat tokopedia affliate : redirect ke page /
+- Cat Pajak & Pendidikan -> sub-cat E-Samsat : Default Samsat Jawa Barat, walaupun location diubah2
+- Banyak segment di kategori belanja banyak yang tidak memiliki sub-segment
 
 BINGUNG
-- Deteksi Sub category yang tidak memiliki segment dan sub segment apapun [Solusi temp : Manual]
+- Deteksi Sub category yang tidak memiliki segment dan sub segment apapun [Solusi temp : Manual] [Logam Mulia #17 dan Produk Lainnya #27]
+- Permasalahan gagal load di scenario loop pindah page karena kelamaan, kebanyakan GET API [Solusi temp : Dibagi2] (30 page sub cateogry "Belanja")
+- Cara agar mempersingkat GET API agar proses testing singkat
+  - hanya ide : konfigurasi browser cypress agar menyimpan cache
