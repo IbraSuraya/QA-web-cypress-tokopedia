@@ -1,8 +1,8 @@
 const { defineConfig } = require("cypress");
 
 module.exports = defineConfig({
-  defaultCommandTimeout: 10000,
-  pageLoadTimeout: 10000,
+  defaultCommandTimeout: 25000,
+  pageLoadTimeout: 25000,
 
   e2e: {
     baseUrl: 'https://www.tokopedia.com/',

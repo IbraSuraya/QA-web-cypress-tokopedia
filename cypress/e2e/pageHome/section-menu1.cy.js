@@ -242,10 +242,10 @@ describe("Page - Home", () => {
       })
     })
 
-    // SECTION SUB CATEGORY - CATEGORY FEATURED
-    function navToSubCat_All(category, subCat, linkSubCat) {
+    // SECTION SUB CATEGORY - CATEGORY FEATURED    
+    function navToSubCat_All(category, linkSubCat, idxSubCat) {
       // Get every sub-cat
-      cy.get(`[href="${linkSubCat}"]`).trigger('mouseover').wait(randomDelay()).click();
+      cy.get(`.css-sbvsi7 > :nth-child(${idxSubCat+1})`).trigger('mouseover').wait(randomDelay()).click();
       cy.url().should("include", linkSubCat).wait(randomDelay())
       cy.go(-1)
       cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
@@ -253,7 +253,7 @@ describe("Page - Home", () => {
     }
     
     // KECUALI SUB CATEGORY PROMO
-    it.only("TP-PH-14 Redirect page every sub category from category Featured", () => {
+    it("TP-PH-14 Redirect page every sub category from category Featured", () => {
       // btn "Kategori"
       cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
       cy.fixture('data_allCat').then((allCat) => {
@@ -264,7 +264,156 @@ describe("Page - Home", () => {
         // Access All sub-cat
         _featured.subCats.forEach((_subCat, idxSubCat) => {
           if (idxSubCat === 1) return
-          navToSubCat_All(_featured.id, _subCat.name, _subCat.href)
+          navToSubCat_All(_featured.id, _subCat.href, idxSubCat)
+        })
+      })
+    })
+
+    it("TP-PH-15 Redirect page every sub category from category butuhHari2", () => {
+      // btn "Kategori"
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      cy.fixture('data_allCat').then((allCat) => {
+        // Category "butuhHari2"
+        const _butuhHari2 = allCat[2]
+        cy.get(`[data-testid="${_butuhHari2.id}"] div`).click().wait(randomDelay());
+        
+        // Access All sub-cat
+        _butuhHari2.subCats.forEach((_subCat, idxSubCat) => {
+          navToSubCat_All(_butuhHari2.id, _subCat.href, idxSubCat)
+        })
+      })
+    })
+
+    // KECUALI SUB CATEGORY LANGGANAN
+    it("TP-PH-16 Redirect page every sub category from category tagihan", () => {
+      // btn "Kategori"
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      cy.fixture('data_allCat').then((allCat) => {
+        // Category "tagihan"
+        const _tagihan = allCat[3]
+        cy.get(`[data-testid="${_tagihan.id}"] div`).click().wait(randomDelay());
+        
+        // Access All sub-cat
+        _tagihan.subCats.forEach((_subCat, idxSubCat) => {
+          if (idxSubCat === 7) return
+          navToSubCat_All(_tagihan.id, _subCat.href, idxSubCat)
+        })
+      })
+    })
+
+    it("TP-PH-17 Redirect page every sub category from category topUp", () => {
+      // btn "Kategori"
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      cy.fixture('data_allCat').then((allCat) => {
+        // Category "topUp"
+        const _topUp = allCat[4]
+        cy.get(`[data-testid="${_topUp.id}"] div`).click().wait(randomDelay());
+        
+        // Access All sub-cat
+        _topUp.subCats.forEach((_subCat, idxSubCat) => {
+          navToSubCat_All(_topUp.id, _subCat.href, idxSubCat)
+        })
+      })
+    })
+
+    // KECUALI SUB CATEGORY PROTEKSI,  KLAIM PROTEKSI, MODAL TOKO
+    it("TP-PH-18 Redirect page every sub category from category tokpedUang", () => {
+      // btn "Kategori"
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      cy.fixture('data_allCat').then((allCat) => {
+        // Category "tokpedUang"
+        const _tokpedUang = allCat[5]
+        cy.get(`[data-testid="${_tokpedUang.id}"] div`).click().wait(randomDelay());
+        
+        // Access All sub-cat
+        _tokpedUang.subCats.forEach((_subCat, idxSubCat) => {
+          if (idxSubCat <= 1 || idxSubCat === 5) return
+          navToSubCat_All(_tokpedUang.id, _subCat.href, idxSubCat)
+        })
+      })
+    })
+    
+    // KECUALI SUB CATEGORY KARTU PRAKERJA
+    it("TP-PH-19 Redirect page every sub category from category pajakPendidikan", () => {
+      // btn "Kategori"
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      cy.fixture('data_allCat').then((allCat) => {
+        // Category "pajakPendidikan"
+        const _pajakPendidikan = allCat[6]
+        cy.get(`[data-testid="${_pajakPendidikan.id}"] div`).click().wait(randomDelay());
+        
+        // Access All sub-cat
+        _pajakPendidikan.subCats.forEach((_subCat, idxSubCat) => {
+          if (idxSubCat === 5) return
+          navToSubCat_All(_pajakPendidikan.id, _subCat.href, idxSubCat)
+        })
+      })
+    })
+
+    it("TP-PH-20 Redirect page every sub category from category travelEntertain", () => {
+      // btn "Kategori"
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      cy.fixture('data_allCat').then((allCat) => {
+        // Category "travelEntertain"
+        const _travelEntertain = allCat[7]
+        cy.get(`[data-testid="${_travelEntertain.id}"] div`).click().wait(randomDelay());
+        
+        // Access All sub-cat
+        _travelEntertain.subCats.forEach((_subCat, idxSubCat) => {
+          navToSubCat_All(_travelEntertain.id, _subCat.href, idxSubCat)
+        })
+      })
+    })
+
+    // KECUALI REKSADANA SYARIAH
+    it("TP-PH-21 Redirect page every sub category from category lain2", () => {
+      // btn "Kategori"
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      cy.fixture('data_allCat').then((allCat) => {
+        // Category "halaCorner"
+        const _halaCorner = allCat[8]
+        cy.get(`[data-testid="${_halaCorner.id}"] div`).click().wait(randomDelay());
+        
+        // Access All sub-cat
+        _halaCorner.subCats.forEach((_subCat, idxSubCat) => {
+          if (idxSubCat === 4) return
+          navToSubCat_All(_halaCorner.id, _subCat.href, idxSubCat)
+        })
+      })
+    })
+
+    // KECUALI TUKAR TAMBAH
+    it("TP-PH-22 Redirect page every sub category from category lain2", () => {
+      // btn "Kategori"
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      cy.fixture('data_allCat').then((allCat) => {
+        // Category "lain2"
+        const _lain2 = allCat[9]
+        cy.get(`[data-testid="${_lain2.id}"] div`).click().wait(randomDelay());
+        
+        // Access All sub-cat
+        _lain2.subCats.forEach((_subCat, idxSubCat) => {
+          if (idxSubCat >= 3) return
+          navToSubCat_All(_lain2.id, _subCat.href, idxSubCat)
+        })
+      })
+    })
+
+    // KHUSUS AFFILIATE
+    it.only("TP-PH-22 Redirect page AFFILIATE sub category from category lain2", () => {
+      // btn "Kategori"
+      cy.get(`[data-testid="headerText"]`).should('be.visible').trigger('mouseover').wait(randomDelay());
+      cy.fixture('data_allCat').then((allCat) => {
+        // Category "lain2"
+        const _lain2 = allCat[9]
+        cy.get(`[data-testid="${_lain2.id}"] div`).click().wait(randomDelay());
+        
+        // Access All sub-cat
+        _lain2.subCats.forEach((_subCat, idxSubCat) => {
+          if (idxSubCat === 4) {
+            cy.get(`.css-sbvsi7 > :nth-child(${idxSubCat+1})`).trigger('mouseover').wait(randomDelay()).click();
+            cy.url().should("include", _subCat.href).wait(randomDelay())
+          }
         })
       })
     })

@@ -1,9 +1,15 @@
 - Beda href html dengan url actual
   - sub-menu "Promo" redirect ke bukan /promo melainkan /discovery/deals
-  = sub-cat "Tokopedia Card" redirect ke bukan /tokopedia-cobrand melainkan /tokopedia-card
+  - sub-cat "Tokopedia Card" redirect ke bukan /tokopedia-cobrand melainkan /tokopedia-card
+  - sub-cat "Langganan" dan "Modal Toko" redirect perlu login terdahulu
+  - sub-cat "Proteksi" dan "Klaim Proteksi" redirect ke url yg cuman beda posisi /?
+  - sub-cat "Prakerja" redirect ke bukan /kartu-prakerja melainkan /discovery/kartu-prakerja
+  - sub-cat "Reksadana Syariah" redirect beda
+  - sub-cat "Tukar Tambah" redirect beda
 - Cat lain-lain -> sub-cat tokopedia affliate : redirect ke page /
 - Cat Pajak & Pendidikan -> sub-cat E-Samsat : Default Samsat Jawa Barat, walaupun location diubah2
 - Banyak segment di kategori belanja banyak yang tidak memiliki sub-segment
+- sub-cat "zakat" dan "zakat maal", href urlnya sama
 
 BINGUNG
 - Deteksi Sub category yang tidak memiliki segment dan sub segment apapun [Solusi temp : Manual] [Logam Mulia #17 dan Produk Lainnya #27]
